@@ -48,14 +48,17 @@ function removeProduct(event) {
   const target = event.currentTarget;
   //console.log('The target in remove is:', target);
   
-  //... your code goes here
-  //let parentClass = document.querySelector('tbody');
-  //let targetProduct = document.querySelector('.product'); //target; 
-  // don know hot to reference the specific product 
-  //parentClass.removeChild(targetProduct);  // removes the first!! 
+  // let parentClass = document.querySelector('tbody');
+  //let targetProduct = document.querySelector('.product');  
+  //parentClass.removeChild(targetProduct);  // removes the first!! ~
+  // Cannot reference the specific product without "ParentNode"       
   
-  target.parentNode.parentNode.remove();          
-  
+  let parent = target.parentNode.parentNode.parentNode;  // greatgrandfather (tbody)
+  let child = target.parentNode.parentNode; // grandfather (td & tr)
+  parent.removeChild(child); // (product)
+    
+  //ALTERNATIVE => target.parentNode.parentNode.remove();  
+
   calculateAll();
 }
 
